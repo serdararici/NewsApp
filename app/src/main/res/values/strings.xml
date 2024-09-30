@@ -10,4 +10,7 @@
     <string name="today">Bugün</string>
     <string name="search">Ara..</string>
 
+    <!--Haberler Admin-->
+    <string name="addNewNews">Yeni Haber Ekle</string>
+
 </resources>

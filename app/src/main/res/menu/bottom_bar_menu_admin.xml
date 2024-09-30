@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/adminHaberFragment"
+        android:icon="@drawable/baseline_home_24_white"
+        android:title="@string/news" />
+    <item
+        android:id="@+id/adminDuyuruFragment"
+        android:icon="@drawable/baseline_notifications_24_white"
+        android:title="@string/announcements" />
+</menu>
