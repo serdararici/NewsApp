@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.AdminActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarAdmin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/app_name"
+        app:titleTextAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:titleTextColor="@color/background" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerViewAdmin"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintTop_toBottomOf="@id/toolbarAdmin"
+        app:layout_constraintBottom_toTopOf="@id/BottomNavAdmin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:navGraph="@navigation/admin_activity_nav" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/BottomNavAdmin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/my_light_primary"
+        app:itemActiveIndicatorStyle="@style/Theme.NewsApp"
+        app:itemIconSize="32dp"
+        app:itemIconTint="@color/bottom_nav_item_color"
+        app:itemRippleColor="@color/mainPage"
+        app:itemTextColor="@color/background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_bar_menu_admin" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
