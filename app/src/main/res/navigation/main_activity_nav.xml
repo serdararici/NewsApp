@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity_nav"
+    app:startDestination="@id/haberFragment">
+
+    <fragment
+        android:id="@+id/haberFragment"
+        android:name="com.serdararici.newsapp.ui.fragment.HaberFragment"
+        android:label="fragment_haber"
+        tools:layout="@layout/fragment_haber" />
+    <fragment
+        android:id="@+id/duyuruFragment"
+        android:name="com.serdararici.newsapp.ui.fragment.DuyuruFragment"
+        android:label="fragment_duyuru"
+        tools:layout="@layout/fragment_duyuru" />
+    <fragment
+        android:id="@+id/haberDetayFragment"
+        android:name="com.serdararici.newsapp.ui.fragment.HaberDetayFragment"
+        android:label="fragment_haber_detay"
+        tools:layout="@layout/fragment_haber_detay" />
+</navigation>
