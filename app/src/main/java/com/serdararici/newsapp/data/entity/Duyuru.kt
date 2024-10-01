@@ -1,7 +1,7 @@
 package com.serdararici.newsapp.data.entity
 
 class Duyuru(
-    id: Long,
+    id: Int,
     konu: String,
     icerik: String,
     gecerlilikTarihi: String,

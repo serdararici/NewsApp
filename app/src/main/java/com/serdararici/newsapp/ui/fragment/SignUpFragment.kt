@@ -1,60 +1,122 @@
 package com.serdararici.newsapp.ui.fragment
 
 import android.os.Bundle
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.serdararici.newsapp.R
+import com.serdararici.newsapp.databinding.FragmentSignUpBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SignUpFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SignUpFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
+    private var _binding : FragmentSignUpBinding?=null
+    private val binding get() = _binding!!
+    private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_up, container, false)
+        _binding = FragmentSignUpBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SignUpFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SignUpFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        navController = Navigation.findNavController(view)
+
+        binding.btnSignUp.setOnClickListener {
+            val username = binding.etUserName.text.toString()
+            val email = binding.etEmailSignUp.text.toString()
+            val password = binding.etPasswordSignUp.text.toString()
+
+            if (checkAll()) {
+                binding.progressBarSignUp.visibility = View.VISIBLE
+                /*
+                viewModel.signUpViewModel(email, password) { success, message ->
+                    if(success){
+                        viewModelProfile.profileCreateViewModel(nameSurname,username,birthDate,"",0,"https://firebasestorage.googleapis.com/v0/b/finalhomework-1140c.appspot.com/o/images%2F-NxZ2L-b3Gm9T4VHyewB?alt=media&token=f5bc8d4b-3450-4c4b-a3ce-885932dcea64",profileCreateDate)
+                        Toast.makeText(requireContext(), R.string.registrationSuccess, Toast.LENGTH_LONG).show()
+                        val intent = Intent(requireActivity(), MainActivity::class.java)
+                        startActivity(intent)
+                        requireActivity().finish()
+                        //navController.navigate(R.id.action_signUpFragment_to_signInFragment)
+                    }else{
+                        Toast.makeText(requireContext(),  getString(R.string.registrationFailed)+"$message", Toast.LENGTH_LONG ).show()
+                    }
                 }
+                */
             }
+        }
+
+        binding.tvSignUpToSignIn.setOnClickListener {
+            navController.navigate(R.id.action_signUpFragment_to_signInFragment)
+        }
+    }
+
+
+    private fun checkAll():Boolean {
+        val userName = binding.etUserName.text.toString()
+        val email = binding.etEmailSignUp.text.toString()
+        val password = binding.etPasswordSignUp.text.toString()
+        val passwordAgain = binding.etPasswordAgain.text.toString()
+        clearErrors()
+        if(userName == ""){
+            binding.textInputUserName.error = getString(R.string.requiredUserName)
+            Toast.makeText(requireContext(), R.string.requiredUserName, Toast.LENGTH_LONG).show()
+            return false
+        }
+        if(email == ""){
+            binding.textInputEmail.error = getString(R.string.requiredEmail)
+            Toast.makeText(requireContext(), R.string.requiredEmail, Toast.LENGTH_LONG).show()
+            return false
+        }
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            binding.textInputEmail.error = getString(R.string.checkEmailFormat)
+            Toast.makeText(requireContext(), R.string.checkEmailFormat, Toast.LENGTH_LONG).show()
+            return false
+        }
+
+        if(password == ""){
+            binding.textInputPassword.error = getString(R.string.requiredPassword)
+            Toast.makeText(requireContext(), R.string.requiredPassword, Toast.LENGTH_LONG).show()
+            return false
+        }
+        if(password.length <6){
+            binding.textInputPassword.error = getString(R.string.passwordLength)
+            Toast.makeText(requireContext(), R.string.passwordLength, Toast.LENGTH_LONG).show()
+            return false
+        }
+        if(passwordAgain == ""){
+            binding.textInputPasswordAgain.error = getString(R.string.requiredPasswordAgain)
+            Toast.makeText(requireContext(), R.string.requiredPasswordAgain, Toast.LENGTH_LONG).show()
+            return false
+        }
+        if(password!=passwordAgain){
+            binding.textInputPasswordAgain.error = getString(R.string.passwordCheck)
+            Toast.makeText(requireContext(), R.string.passwordCheck, Toast.LENGTH_LONG).show()
+            return false
+        }
+        return true
+    }
+    private fun clearErrors() {
+        binding.textInputUserName.error = null
+        binding.textInputEmail.error = null
+        binding.textInputPassword.error = null
+        binding.textInputPasswordAgain.error = null
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

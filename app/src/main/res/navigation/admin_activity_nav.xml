@@ -9,5 +9,45 @@
         android:id="@+id/adminHaberFragment"
         android:name="com.serdararici.newsapp.ui.fragment.AdminHaberFragment"
         android:label="fragment_admin_haber"
-        tools:layout="@layout/fragment_admin_haber" />
+        tools:layout="@layout/fragment_admin_haber" >
+        <action
+            android:id="@+id/action_adminHaberFragment_to_adminDuyuruFragment2"
+            app:destination="@id/adminDuyuruFragment" />
+        <action
+            android:id="@+id/action_adminHaberFragment_to_adminHaberGuncelleFragment"
+            app:destination="@id/adminHaberGuncelleFragment" />
+        <action
+            android:id="@+id/action_adminHaberFragment_to_adminYeniHaberFragment"
+            app:destination="@id/adminYeniHaberFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminDuyuruFragment"
+        android:name="com.serdararici.newsapp.ui.fragment.AdminDuyuruFragment"
+        android:label="fragment_admin_duyuru"
+        tools:layout="@layout/fragment_admin_duyuru" >
+        <action
+            android:id="@+id/action_adminDuyuruFragment2_to_adminHaberFragment"
+            app:destination="@id/adminHaberFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminHaberGuncelleFragment"
+        android:name="com.serdararici.newsapp.ui.fragment.AdminHaberGuncelleFragment"
+        android:label="fragment_admin_haber_guncelle"
+        tools:layout="@layout/fragment_admin_haber_guncelle" >
+        <action
+            android:id="@+id/action_adminHaberGuncelleFragment_to_adminHaberFragment"
+            app:destination="@id/adminHaberFragment" />
+        <argument
+            android:name="news"
+            app:argType="com.serdararici.newsapp.data.entity.Haber" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminYeniHaberFragment"
+        android:name="com.serdararici.newsapp.ui.fragment.AdminYeniHaberFragment"
+        android:label="fragment_admin_yeni_haber"
+        tools:layout="@layout/fragment_admin_yeni_haber" >
+        <action
+            android:id="@+id/action_adminYeniHaberFragment_to_adminHaberFragment"
+            app:destination="@id/adminHaberFragment" />
+    </fragment>
 </navigation>

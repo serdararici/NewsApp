@@ -5,6 +5,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.serdararici.newsapp.R
 import com.serdararici.newsapp.databinding.ActivityAdminBinding
 import com.serdararici.newsapp.databinding.ActivityMainBinding
@@ -25,6 +27,9 @@ class AdminActivity : AppCompatActivity() {
 
          */
 
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerViewAdmin) as NavHostFragment
+
+        NavigationUI.setupWithNavController(binding.BottomNavAdmin, navHostFragment.navController)
 
     }
 }
