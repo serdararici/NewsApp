@@ -39,7 +39,7 @@
             app:destination="@id/adminHaberFragment" />
         <argument
             android:name="news"
-            app:argType="com.serdararici.newsapp.data.entity.Haber" />
+            app:argType="com.serdararici.newsapp.data.entity.Etkinlik" />
     </fragment>
     <fragment
         android:id="@+id/adminYeniHaberFragment"

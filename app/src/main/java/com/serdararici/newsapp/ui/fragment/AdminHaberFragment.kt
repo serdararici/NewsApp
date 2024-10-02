@@ -7,21 +7,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.serdararici.newsapp.R
-import com.serdararici.newsapp.data.entity.Haber
 import com.serdararici.newsapp.databinding.FragmentAdminHaberBinding
 import com.serdararici.newsapp.ui.adapter.AdminHaberlerAdapter
 import com.serdararici.newsapp.ui.adapter.HaberlerAdapter
+import com.serdararici.newsapp.ui.viewmodel.AdminHaberViewModel
+import com.serdararici.newsapp.ui.viewmodel.AdminYeniHaberViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AdminHaberFragment : Fragment(), SearchView.OnQueryTextListener {
     private var _binding : FragmentAdminHaberBinding?= null
     private val binding get() = _binding!!
     private lateinit var navController: NavController
+    private lateinit var viewmodelAdminHaber : AdminHaberViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val tempViewModel : AdminHaberViewModel by viewModels()
+        viewmodelAdminHaber = tempViewModel
 
     }
 
@@ -45,39 +53,27 @@ class AdminHaberFragment : Fragment(), SearchView.OnQueryTextListener {
             navController.navigate(R.id.action_adminHaberFragment_to_adminYeniHaberFragment)
         }
 
-        val haberlerListesi = ArrayList<Haber>()
-        val h1 = Haber(1, "Haber1", "İcerik1dfgsdfgsdgsdfgsdfdgfgsdfbsdfbdsfsbdsfbdsbdsfdfbsdfbdsbd", "10.07.2024", "link1","serdararici")
-        val h2 = Haber(2, "Haber2", "İcerik2", "10.07.2024", "link1","serdararici")
-        val h3 = Haber(3, "Haber3", "İcerik3", "10.07.2024", "link1","serdararici")
-        val h4 = Haber(4, "Haber4", "İcerik4", "10.07.2024", "link1","serdararici")
-        haberlerListesi.add(h1)
-        haberlerListesi.add(h2)
-        haberlerListesi.add(h3)
-        haberlerListesi.add(h4)
-
-        val adapter = AdminHaberlerAdapter(requireContext(),haberlerListesi)
-        binding.rvNewsAdmin.adapter = adapter
+        viewmodelAdminHaber.haberlerListesiLive.observe(viewLifecycleOwner) {
+            val adapter = AdminHaberlerAdapter(requireContext(),it,viewmodelAdminHaber)
+            binding.rvNewsAdmin.adapter = adapter
+        }
 
     }
 
     override fun onQueryTextSubmit(query: String): Boolean {
-        search(query)
+        viewmodelAdminHaber.searchNews(query)
         return true
     }
 
     override fun onQueryTextChange(newText: String): Boolean {
-        search(newText)
+        viewmodelAdminHaber.searchNews(newText)
         return true
-    }
-
-    fun search (searchingWord: String){
-        Log.e("search", searchingWord)
     }
 
 
     override fun onResume() {
         super.onResume()
-
+        viewmodelAdminHaber.getAllNews()
     }
 
 

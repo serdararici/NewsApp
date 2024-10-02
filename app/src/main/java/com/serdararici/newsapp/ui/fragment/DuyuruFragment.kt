@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.serdararici.newsapp.R
 import com.serdararici.newsapp.databinding.FragmentDuyuruBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DuyuruFragment : Fragment() {
     private var _binding : FragmentDuyuruBinding?=null
     private val binding get() = _binding!!

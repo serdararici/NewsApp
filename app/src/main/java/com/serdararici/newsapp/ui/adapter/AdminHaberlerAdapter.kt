@@ -9,11 +9,15 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.serdararici.newsapp.R
-import com.serdararici.newsapp.data.entity.Haber
+import com.serdararici.newsapp.data.entity.Etkinlik
 import com.serdararici.newsapp.databinding.CardNewsAdminBinding
 import com.serdararici.newsapp.ui.fragment.AdminHaberFragmentDirections
+import com.serdararici.newsapp.ui.viewmodel.AdminHaberViewModel
 
-class AdminHaberlerAdapter (var mContext: Context, var haberlerListesi:List<Haber>) : RecyclerView.Adapter<AdminHaberlerAdapter.CardNewsAdminHolder>() {
+class AdminHaberlerAdapter (var mContext: Context,
+                            var haberlerListesi:List<Etkinlik>,
+                            var viewModel: AdminHaberViewModel)
+    : RecyclerView.Adapter<AdminHaberlerAdapter.CardNewsAdminHolder>() {
     inner class CardNewsAdminHolder(binding : CardNewsAdminBinding) : RecyclerView.ViewHolder(binding.root) {
         var binding: CardNewsAdminBinding
         init {
@@ -54,8 +58,7 @@ class AdminHaberlerAdapter (var mContext: Context, var haberlerListesi:List<Habe
                         // Silme işlemi, Snackbar ile onay alınıyor
                         Snackbar.make(it, "${haber.konu} ${mContext.getString(R.string.isDelete)}", Snackbar.LENGTH_LONG)
                             .setAction(R.string.yes) {
-                                Log.e("sil", haber.id.toString())
-                                //viewModel.deleteNewsSettings(newsSettings.id!!)
+                                viewModel.deleteNews(haber.id)
                             }.show()
                         true
                     }

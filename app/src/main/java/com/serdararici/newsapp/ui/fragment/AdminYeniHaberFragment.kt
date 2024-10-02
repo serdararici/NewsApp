@@ -7,20 +7,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.serdararici.newsapp.R
 import com.serdararici.newsapp.databinding.FragmentAdminYeniHaberBinding
-import java.text.SimpleDateFormat
-import java.util.Locale
+import com.serdararici.newsapp.ui.viewmodel.AdminYeniHaberViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AdminYeniHaberFragment : Fragment() {
     private var _binding: FragmentAdminYeniHaberBinding?=null
     private val binding get() = _binding!!
     private lateinit var navController: NavController
+    private lateinit var viewmodelAdminYeniHaber : AdminYeniHaberViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val tempViewModel : AdminYeniHaberViewModel by viewModels()
+        viewmodelAdminYeniHaber = tempViewModel
 
         val bottomNavigationView =
             requireActivity()!!.findViewById<BottomNavigationView>(R.id.BottomNavAdmin)
@@ -54,7 +60,7 @@ class AdminYeniHaberFragment : Fragment() {
     }
 
     fun addNewNews(newNewsTitle:String, newNewsContent:String) {
-        Log.e("NewNews", newNewsTitle)
+        viewmodelAdminYeniHaber.addNewNews(newNewsTitle,newNewsContent)
     }
 
 

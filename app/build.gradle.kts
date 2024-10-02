@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("androidx.navigation.safeargs")
+    kotlin("kapt")
+    id ("dagger.hilt.android.plugin")
 }
 
 android {
@@ -40,6 +42,8 @@ android {
 }
 
 dependencies {
+    val room_version = "2.6.1"
+    val hilt_version = "2.48"
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -51,4 +55,21 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //Viewmodel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
+    // LiveData
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
+    // Lifecycle
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
+
+    /// Room components
+    implementation ("androidx.room:room-runtime:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+    // Kotlin extensions and Coroutines support for Room
+    implementation ("androidx.room:room-ktx:$room_version")
+
+    //hilt
+    implementation ("com.google.dagger:hilt-android:$hilt_version")
+    kapt ("com.google.dagger:hilt-compiler:$hilt_version")
 }

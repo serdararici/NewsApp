@@ -10,7 +10,9 @@ import androidx.navigation.ui.NavigationUI
 import com.serdararici.newsapp.R
 import com.serdararici.newsapp.databinding.ActivityAdminBinding
 import com.serdararici.newsapp.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AdminActivity : AppCompatActivity() {
     private lateinit var binding : ActivityAdminBinding
     override fun onCreate(savedInstanceState: Bundle?) {

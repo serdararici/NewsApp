@@ -7,7 +7,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.serdararici.newsapp.R
 import com.serdararici.newsapp.databinding.ActivityAuthBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AuthActivity : AppCompatActivity() {
     private lateinit var binding : ActivityAuthBinding
     override fun onCreate(savedInstanceState: Bundle?) {

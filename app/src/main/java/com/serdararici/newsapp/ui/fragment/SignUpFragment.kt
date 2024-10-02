@@ -11,8 +11,10 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.serdararici.newsapp.R
 import com.serdararici.newsapp.databinding.FragmentSignUpBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class SignUpFragment : Fragment() {
     private var _binding : FragmentSignUpBinding?=null
     private val binding get() = _binding!!

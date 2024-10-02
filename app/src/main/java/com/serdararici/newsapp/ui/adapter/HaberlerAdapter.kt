@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.serdararici.newsapp.R
-import com.serdararici.newsapp.data.entity.Haber
+import com.serdararici.newsapp.data.entity.Etkinlik
 import com.serdararici.newsapp.databinding.CardNewsBinding
 
-class HaberlerAdapter(var mContext: Context, var haberlerListesi:List<Haber>) : RecyclerView.Adapter<HaberlerAdapter.CardNewsHolder>() {
+class HaberlerAdapter(var mContext: Context, var haberlerListesi:List<Etkinlik>) : RecyclerView.Adapter<HaberlerAdapter.CardNewsHolder>() {
     inner class CardNewsHolder(binding : CardNewsBinding) : RecyclerView.ViewHolder(binding.root) {
         var binding:CardNewsBinding
         init {

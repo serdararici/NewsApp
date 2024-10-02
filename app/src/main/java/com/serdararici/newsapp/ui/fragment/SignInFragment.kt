@@ -14,7 +14,9 @@ import androidx.navigation.fragment.findNavController
 import com.serdararici.newsapp.MainActivity
 import com.serdararici.newsapp.R
 import com.serdararici.newsapp.databinding.FragmentSignInBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignInFragment : Fragment() {
     private var _binding : FragmentSignInBinding?=null
     private val binding get() = _binding!!

@@ -7,19 +7,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.serdararici.newsapp.R
 import com.serdararici.newsapp.databinding.FragmentAdminHaberGuncelleBinding
+import com.serdararici.newsapp.ui.viewmodel.AdminHaberGuncelleViewModel
+import com.serdararici.newsapp.ui.viewmodel.AdminYeniHaberViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AdminHaberGuncelleFragment : Fragment() {
     private var _binding: FragmentAdminHaberGuncelleBinding?=null
     private val binding get() = _binding!!
     private lateinit var navController: NavController
+    private lateinit var viewmodelAdminHaberGuncelle : AdminHaberGuncelleViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val tempViewModel : AdminHaberGuncelleViewModel by viewModels()
+        viewmodelAdminHaberGuncelle = tempViewModel
 
         val bottomNavigationView =
             requireActivity()!!.findViewById<BottomNavigationView>(R.id.BottomNavAdmin)
@@ -57,7 +66,7 @@ class AdminHaberGuncelleFragment : Fragment() {
 
 
     fun updateNews(newsId: Int, updateNewsTitle:String, updateNewsContent:String) {
-        Log.e("updateNews", updateNewsTitle + " " + updateNewsContent)
+        viewmodelAdminHaberGuncelle.updateNews(newsId,updateNewsTitle,updateNewsContent)
     }
 
 
