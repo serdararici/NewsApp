@@ -7,10 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.serdararici.newsapp.R
 import com.serdararici.newsapp.databinding.FragmentSignUpBinding
+import com.serdararici.newsapp.ui.viewmodel.SignUpViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -19,9 +21,12 @@ class SignUpFragment : Fragment() {
     private var _binding : FragmentSignUpBinding?=null
     private val binding get() = _binding!!
     private lateinit var navController: NavController
+    private lateinit var viewmodelSignUp : SignUpViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val tempViewModel : SignUpViewModel by viewModels()
+        viewmodelSignUp = tempViewModel
     }
 
     override fun onCreateView(
@@ -38,25 +43,22 @@ class SignUpFragment : Fragment() {
 
         binding.btnSignUp.setOnClickListener {
             val username = binding.etUserName.text.toString()
-            val email = binding.etEmailSignUp.text.toString()
+            val userMail = binding.etEmailSignUp.text.toString()
             val password = binding.etPasswordSignUp.text.toString()
 
             if (checkAll()) {
                 binding.progressBarSignUp.visibility = View.VISIBLE
+                viewmodelSignUp.addUser(username,userMail,password,"user")
+                Toast.makeText(requireContext(), R.string.registrationSuccess, Toast.LENGTH_LONG).show()
+
                 /*
-                viewModel.signUpViewModel(email, password) { success, message ->
-                    if(success){
-                        viewModelProfile.profileCreateViewModel(nameSurname,username,birthDate,"",0,"https://firebasestorage.googleapis.com/v0/b/finalhomework-1140c.appspot.com/o/images%2F-NxZ2L-b3Gm9T4VHyewB?alt=media&token=f5bc8d4b-3450-4c4b-a3ce-885932dcea64",profileCreateDate)
-                        Toast.makeText(requireContext(), R.string.registrationSuccess, Toast.LENGTH_LONG).show()
-                        val intent = Intent(requireActivity(), MainActivity::class.java)
-                        startActivity(intent)
-                        requireActivity().finish()
-                        //navController.navigate(R.id.action_signUpFragment_to_signInFragment)
-                    }else{
-                        Toast.makeText(requireContext(),  getString(R.string.registrationFailed)+"$message", Toast.LENGTH_LONG ).show()
-                    }
-                }
-                */
+                val intent = Intent(requireActivity(), MainActivity::class.java)
+                startActivity(intent)
+                requireActivity().finish()
+
+                Toast.makeText(requireContext(),  getString(R.string.registrationFailed)+"$message", Toast.LENGTH_LONG ).show()
+                 */
+
             }
         }
 

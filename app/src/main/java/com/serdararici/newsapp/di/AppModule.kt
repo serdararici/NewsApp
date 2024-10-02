@@ -2,9 +2,12 @@ package com.serdararici.newsapp.di
 
 import android.content.Context
 import androidx.room.Room
+import com.serdararici.newsapp.data.entity.User
 import com.serdararici.newsapp.data.repo.EtkinlikRepo
+import com.serdararici.newsapp.data.repo.UserRepo
 import com.serdararici.newsapp.room.EtkinlikDao
 import com.serdararici.newsapp.room.RoomDb
+import com.serdararici.newsapp.room.UserDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,5 +30,19 @@ class AppModule {
         val db = Room.databaseBuilder(context, RoomDb::class.java, "news.sqlite")
             .createFromAsset("news.sqlite").build()
         return db.getEtkinlikDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserRepo(udao:UserDao) : UserRepo {
+        return UserRepo(udao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserDao(@ApplicationContext context: Context) : UserDao {
+        val db = Room.databaseBuilder(context, RoomDb::class.java, "news.sqlite")
+            .createFromAsset("news.sqlite").build()
+        return db.getUserDao()
     }
 }

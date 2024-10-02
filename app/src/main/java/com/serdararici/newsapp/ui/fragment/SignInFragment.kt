@@ -2,27 +2,39 @@ package com.serdararici.newsapp.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.serdararici.newsapp.MainActivity
 import com.serdararici.newsapp.R
+import com.serdararici.newsapp.data.entity.User
 import com.serdararici.newsapp.databinding.FragmentSignInBinding
+import com.serdararici.newsapp.ui.AdminActivity
+import com.serdararici.newsapp.ui.viewmodel.SignInViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SignInFragment : Fragment() {
     private var _binding : FragmentSignInBinding?=null
     private val binding get() = _binding!!
     private lateinit var navController: NavController
+    private lateinit var viewmodelSignIn : SignInViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val tempViewModel : SignInViewModel by viewModels()
+        viewmodelSignIn = tempViewModel
     }
 
     override fun onCreateView(
@@ -53,6 +65,54 @@ class SignInFragment : Fragment() {
 
             if(checkAll()){
                 binding.progressBarSignIn.visibility = View.VISIBLE
+
+                lifecycleScope.launch {
+                    viewmodelSignIn.signInUser(email, password)
+                    delay(2000)
+                    viewmodelSignIn.userLive.removeObservers(viewLifecycleOwner)
+                    viewmodelSignIn.userLive.observe(viewLifecycleOwner) { user ->
+                        if (user != null) {
+                            // Giriş başarılı
+                            binding.progressBarSignIn.visibility = View.GONE
+                            // Ana ekrana yönlendir  //Livedata ile user gönder
+                            if (user.role == "admin") {
+                                val intent = Intent(requireContext(), AdminActivity::class.java)
+                                startActivity(intent)
+                                requireActivity().finish()
+                                Log.e("SignIn", "Giriş yapıldı")
+                                Toast.makeText(
+                                    requireContext(),
+                                    getString(R.string.welcome) + " ${user.userName}",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            } else {
+                                val intent = Intent(requireContext(), MainActivity::class.java)
+                                startActivity(intent)
+                                requireActivity().finish()
+                                Log.e("SignIn", "Giriş yapıldı")
+                                Toast.makeText(
+                                    requireContext(),
+                                    getString(R.string.welcome),
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+
+                        } else {
+                            // Giriş başarısız
+                            binding.progressBarSignIn.visibility = View.GONE
+                            // Giriş başarısız, kullanıcıya hata mesajı gösterilebilir.
+                            Toast.makeText(
+                                requireContext(),
+                                getString(R.string.signInFailed),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+
+
+
+
                 /*
                 viewModelAuth.signInViewModel(email,password){ success, message ->
                     if (success) {
