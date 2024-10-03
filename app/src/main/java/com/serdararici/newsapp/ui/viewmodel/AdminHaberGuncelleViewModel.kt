@@ -9,8 +9,8 @@ import javax.inject.Inject
 @HiltViewModel
 class AdminHaberGuncelleViewModel @Inject constructor(var erepo: EtkinlikRepo) : ViewModel() {
 
-    fun updateNews(newsId: Int, updateNewsTitle:String, updateNewsContent:String, updateNewsDate:String) {
-        erepo.updateNews(newsId,updateNewsTitle, updateNewsContent,updateNewsDate)
+    fun updateNews(newsId: Int, updateNewsTitle:String, updateNewsContent:String, updateNewsDate:String,newNewsImage:String, newNewsUserName:String) {
+        erepo.updateNews(newsId,updateNewsTitle, updateNewsContent,updateNewsDate,newNewsImage,newNewsUserName)
     }
 
 }

@@ -38,7 +38,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/viewLineCardNewsAdmin"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/sport_news" />
+                tools:srcCompat="@drawable/image_not_found" />
 
             <TextView
                 android:id="@+id/tvTitleCardNewsAdmin"

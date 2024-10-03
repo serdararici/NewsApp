@@ -24,9 +24,9 @@ class EtkinlikRepo (var edao:EtkinlikDao){
         return duyurularListesiLive
     }
 
-    fun addNewNews(newNewsTitle:String, newNewsContent:String, newNewsDate:String) {
+    fun addNewNews(newNewsTitle:String, newNewsContent:String, newNewsDate:String, newNewsImage:String, newNewsUserName:String) {
         val job = CoroutineScope(Dispatchers.Main).launch {
-            val newHaber = Etkinlik(0,newNewsTitle,newNewsContent,newNewsDate,"","haber","serdararici","")
+            val newHaber = Etkinlik(0,newNewsTitle,newNewsContent,newNewsDate,newNewsImage,"haber",newNewsUserName,"")
             edao.addNews(newHaber)
         }
     }
@@ -37,9 +37,9 @@ class EtkinlikRepo (var edao:EtkinlikDao){
         }
     }
 
-    fun updateNews(newsId: Int, updateNewsTitle:String, updateNewsContent:String, updateNewsDate:String) {
+    fun updateNews(newsId: Int, updateNewsTitle:String, updateNewsContent:String, updateNewsDate:String,newNewsImage:String, newNewsUserName:String) {
         val job = CoroutineScope(Dispatchers.Main).launch {
-            val updateHaber = Etkinlik(newsId,updateNewsTitle,updateNewsContent,updateNewsDate,"","haber","serdararici","")
+            val updateHaber = Etkinlik(newsId,updateNewsTitle,updateNewsContent,updateNewsDate,newNewsImage,"haber",newNewsUserName,"")
             edao.updateNews(updateHaber)
         }
     }

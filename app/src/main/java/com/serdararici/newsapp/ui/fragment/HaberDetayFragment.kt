@@ -1,5 +1,6 @@
 package com.serdararici.newsapp.ui.fragment
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -40,6 +41,15 @@ class HaberDetayFragment : Fragment() {
         binding.tvHaberContent.setText(newsDetails.icerik)
         binding.tvHaberDetayUsername.setText(newsDetails.kullaniciAdi)
         binding.tvHaberDetayDate.setText(newsDetails.gecerlilikTarihi)
+        val imagePath = newsDetails.resim
+        val file = java.io.File(imagePath)
+
+        if (file.exists()) {
+            val bitmap = BitmapFactory.decodeFile(file.absolutePath)
+            binding.ivHaberDetay.setImageBitmap(bitmap)  // Resmi bir ImageView'de göster
+        } else {
+            binding.ivHaberDetay.setImageResource(R.drawable.image_not_found)
+        }
     }
 
 }

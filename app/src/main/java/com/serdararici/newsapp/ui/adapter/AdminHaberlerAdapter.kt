@@ -1,6 +1,7 @@
 package com.serdararici.newsapp.ui.adapter
 
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import com.serdararici.newsapp.data.entity.Etkinlik
 import com.serdararici.newsapp.databinding.CardNewsAdminBinding
 import com.serdararici.newsapp.ui.fragment.AdminHaberFragmentDirections
 import com.serdararici.newsapp.ui.viewmodel.AdminHaberViewModel
+import java.io.File
 
 class AdminHaberlerAdapter (var mContext: Context,
                             var haberlerListesi:List<Etkinlik>,
@@ -41,7 +43,16 @@ class AdminHaberlerAdapter (var mContext: Context,
         holder.binding.tvContentCardNewsAdmin.text = haber.icerik
         holder.binding.tvUserNameCardNewsAdmin.text = haber.kullaniciAdi
         holder.binding.tvDateCardNewsAdmin.text = haber.gecerlilikTarihi
-        holder.binding.ivCardNewsAdmin.setImageResource(R.drawable.sport_news)
+        //holder.binding.ivCardNewsAdmin.setImageResource(R.drawable.image_not_found)
+        val imagePath = haber.resim
+        val file = File(imagePath)
+
+        if (file.exists()) {
+            val bitmap = BitmapFactory.decodeFile(file.absolutePath)
+            holder.binding.ivCardNewsAdmin.setImageBitmap(bitmap)  // Resmi bir ImageView'de göster
+        } else {
+            holder.binding.ivCardNewsAdmin.setImageResource(R.drawable.image_not_found)
+        }
 
         holder.binding.cvNewsAdmin.setOnClickListener{
             val action = AdminHaberFragmentDirections.actionAdminHaberFragmentToAdminHaberDetayFragment(haber)
