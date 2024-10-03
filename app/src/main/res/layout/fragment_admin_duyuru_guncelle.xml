@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragment.AdminHaberGuncelleFragment">
+    tools:context=".ui.fragment.AdminDuyuruGuncelleFragment">
 
 
     <ScrollView
@@ -15,23 +15,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/ivUpdateNewsImageAdmin"
-                android:layout_width="200dp"
-                android:layout_height="150dp"
-                android:layout_marginStart="48dp"
-                android:layout_marginTop="32dp"
-                android:src="@drawable/image_not_found"
-                app:layout_constraintEnd_toStartOf="@+id/btnUpdateNewsAddImageAdmin"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputUpdateNewsTitleAdmin"
+                android:id="@+id/textInputUpdateAnnouncementTitleAdmin"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="64dp"
                 android:layout_marginEnd="32dp"
                 app:boxCornerRadiusBottomEnd="10dp"
                 app:boxCornerRadiusBottomStart="10dp"
@@ -39,17 +28,17 @@
                 app:boxCornerRadiusTopStart="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivUpdateNewsImageAdmin">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etUpdateNewsTitleAdmin"
+                    android:id="@+id/etUpdateAnnouncementTitleAdmin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/newNewsTitle" />
+                    android:hint="@string/newAnnouncementTitle" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputUpdateNewsContentAdmin"
+                android:id="@+id/textInputUpdateAnnouncementContentAdmin"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -61,20 +50,20 @@
                 app:boxCornerRadiusTopStart="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputUpdateNewsTitleAdmin">
+                app:layout_constraintTop_toBottomOf="@+id/textInputUpdateAnnouncementTitleAdmin">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etUpdateNewsContentAdmin"
+                    android:id="@+id/etUpdateAnnouncementContentAdmin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="top"
-                    android:hint="@string/newNewsContent"
+                    android:hint="@string/newAnnouncementContent"
                     android:inputType="textMultiLine"
                     android:scrollbars="vertical" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/btnUpdateNewsSaveAdmin"
+                android:id="@+id/btnUpdateAnnouncementSaveAdmin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -84,31 +73,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputUpdateNewsContentAdmin" />
-
-            <Button
-                android:id="@+id/btnUpdateNewsAddImageAdmin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="32dp"
-                android:backgroundTint="#888888"
-                android:text="@string/newNewsChooseImage"
-                app:layout_constraintBottom_toBottomOf="@+id/ivUpdateNewsImageAdmin"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/ivUpdateNewsImageAdmin"
-                app:layout_constraintTop_toTopOf="@+id/ivUpdateNewsImageAdmin" />
-
+                app:layout_constraintTop_toBottomOf="@+id/textInputUpdateAnnouncementContentAdmin" />
 
             <ProgressBar
-                android:id="@+id/progressBarNewNewsAdmin"
+                android:id="@+id/progressBarUpdateAnnouncementAdmin"
                 style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:visibility="gone"
-                app:layout_constraintStart_toEndOf="@+id/btnUpdateNewsSaveAdmin"
-                app:layout_constraintTop_toTopOf="@+id/btnUpdateNewsSaveAdmin" />
+                app:layout_constraintStart_toEndOf="@+id/btnUpdateAnnouncementSaveAdmin"
+                app:layout_constraintTop_toTopOf="@+id/btnUpdateAnnouncementSaveAdmin" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

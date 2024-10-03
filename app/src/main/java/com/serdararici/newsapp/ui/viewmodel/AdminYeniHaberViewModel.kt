@@ -9,7 +9,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AdminYeniHaberViewModel  @Inject constructor(var erepo: EtkinlikRepo) : ViewModel() {
 
-    fun addNewNews(newNewsTitle:String, newNewsContent:String) {
-        erepo.addNewNews(newNewsTitle,newNewsContent)
+    fun addNewNews(newNewsTitle:String, newNewsContent:String,newNewsDate:String) {
+        erepo.addNewNews(newNewsTitle,newNewsContent,newNewsDate)
     }
 }

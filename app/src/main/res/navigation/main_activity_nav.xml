@@ -9,15 +9,48 @@
         android:id="@+id/haberFragment"
         android:name="com.serdararici.newsapp.ui.fragment.HaberFragment"
         android:label="fragment_haber"
-        tools:layout="@layout/fragment_haber" />
+        tools:layout="@layout/fragment_haber" >
+        <action
+            android:id="@+id/action_haberFragment_to_haberDetayFragment"
+            app:destination="@id/haberDetayFragment" />
+        <action
+            android:id="@+id/action_haberFragment_to_duyuruFragment"
+            app:destination="@id/duyuruFragment" />
+    </fragment>
     <fragment
         android:id="@+id/duyuruFragment"
         android:name="com.serdararici.newsapp.ui.fragment.DuyuruFragment"
         android:label="fragment_duyuru"
-        tools:layout="@layout/fragment_duyuru" />
+        tools:layout="@layout/fragment_duyuru" >
+        <action
+            android:id="@+id/action_duyuruFragment_to_haberFragment"
+            app:destination="@id/haberFragment" />
+        <action
+            android:id="@+id/action_duyuruFragment_to_duyuruDetayFragment"
+            app:destination="@id/duyuruDetayFragment" />
+    </fragment>
     <fragment
         android:id="@+id/haberDetayFragment"
         android:name="com.serdararici.newsapp.ui.fragment.HaberDetayFragment"
         android:label="fragment_haber_detay"
-        tools:layout="@layout/fragment_haber_detay" />
+        tools:layout="@layout/fragment_haber_detay" >
+        <action
+            android:id="@+id/action_haberDetayFragment_to_haberFragment"
+            app:destination="@id/haberFragment" />
+        <argument
+            android:name="newsDetails"
+            app:argType="com.serdararici.newsapp.data.entity.Etkinlik" />
+    </fragment>
+    <fragment
+        android:id="@+id/duyuruDetayFragment"
+        android:name="com.serdararici.newsapp.ui.fragment.DuyuruDetayFragment"
+        android:label="fragment_duyuru_detay"
+        tools:layout="@layout/fragment_duyuru_detay" >
+        <action
+            android:id="@+id/action_duyuruDetayFragment_to_duyuruFragment"
+            app:destination="@id/duyuruFragment" />
+        <argument
+            android:name="announcementDetails"
+            app:argType="com.serdararici.newsapp.data.entity.Etkinlik" />
+    </fragment>
 </navigation>

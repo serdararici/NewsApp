@@ -92,7 +92,7 @@ class SignInFragment : Fragment() {
                                 Log.e("SignIn", "Giriş yapıldı")
                                 Toast.makeText(
                                     requireContext(),
-                                    getString(R.string.welcome),
+                                    getString(R.string.welcome) + " ${user.userName}",
                                     Toast.LENGTH_LONG
                                 ).show()
                             }

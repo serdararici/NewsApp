@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_adminHaberFragment_to_adminYeniHaberFragment"
             app:destination="@id/adminYeniHaberFragment" />
+        <action
+            android:id="@+id/action_adminHaberFragment_to_adminHaberDetayFragment"
+            app:destination="@id/adminHaberDetayFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminDuyuruFragment"
@@ -28,6 +31,15 @@
         <action
             android:id="@+id/action_adminDuyuruFragment2_to_adminHaberFragment"
             app:destination="@id/adminHaberFragment" />
+        <action
+            android:id="@+id/action_adminDuyuruFragment_to_adminDuyuruGuncelleFragment"
+            app:destination="@id/adminDuyuruGuncelleFragment" />
+        <action
+            android:id="@+id/action_adminDuyuruFragment_to_adminYeniDuyuruFragment"
+            app:destination="@id/adminYeniDuyuruFragment" />
+        <action
+            android:id="@+id/action_adminDuyuruFragment_to_adminDuyuruDetayFragment"
+            app:destination="@id/adminDuyuruDetayFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminHaberGuncelleFragment"
@@ -49,5 +61,50 @@
         <action
             android:id="@+id/action_adminYeniHaberFragment_to_adminHaberFragment"
             app:destination="@id/adminHaberFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminHaberDetayFragment"
+        android:name="com.serdararici.newsapp.ui.fragment.AdminHaberDetayFragment"
+        android:label="fragment_admin_haber_detay"
+        tools:layout="@layout/fragment_admin_haber_detay" >
+        <action
+            android:id="@+id/action_adminHaberDetayFragment_to_adminHaberFragment"
+            app:destination="@id/adminHaberFragment" />
+        <argument
+            android:name="newsDetails"
+            app:argType="com.serdararici.newsapp.data.entity.Etkinlik" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminDuyuruDetayFragment"
+        android:name="com.serdararici.newsapp.ui.fragment.AdminDuyuruDetayFragment"
+        android:label="fragment_admin_duyuru_detay"
+        tools:layout="@layout/fragment_admin_duyuru_detay" >
+        <action
+            android:id="@+id/action_adminDuyuruDetayFragment_to_adminDuyuruFragment"
+            app:destination="@id/adminDuyuruFragment" />
+        <argument
+            android:name="announcementDetails"
+            app:argType="com.serdararici.newsapp.data.entity.Etkinlik" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminDuyuruGuncelleFragment"
+        android:name="com.serdararici.newsapp.ui.fragment.AdminDuyuruGuncelleFragment"
+        android:label="fragment_admin_duyuru_guncelle"
+        tools:layout="@layout/fragment_admin_duyuru_guncelle" >
+        <action
+            android:id="@+id/action_adminDuyuruGuncelleFragment_to_adminDuyuruFragment"
+            app:destination="@id/adminDuyuruFragment" />
+        <argument
+            android:name="announcement"
+            app:argType="com.serdararici.newsapp.data.entity.Etkinlik" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminYeniDuyuruFragment"
+        android:name="com.serdararici.newsapp.ui.fragment.AdminYeniDuyuruFragment"
+        android:label="fragment_admin_yeni_duyuru"
+        tools:layout="@layout/fragment_admin_yeni_duyuru" >
+        <action
+            android:id="@+id/action_adminYeniDuyuruFragment_to_adminDuyuruFragment"
+            app:destination="@id/adminDuyuruFragment" />
     </fragment>
 </navigation>

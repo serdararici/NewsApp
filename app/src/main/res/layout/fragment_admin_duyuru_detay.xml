@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragment.HaberDetayFragment">
+    tools:context=".ui.fragment.AdminDuyuruDetayFragment">
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -19,21 +20,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
             <ImageView
-                android:id="@+id/ivHaberDetay"
+                android:id="@+id/ivAdminAnnouncementDetay"
                 android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:layout_marginStart="32dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="64dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
-                android:src="@drawable/sport_news"
+                android:layout_marginEnd="64dp"
+                android:src="@drawable/baseline_notifications_24_yellow"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvHaberDetayTitle"
+                android:id="@+id/tvAdminAnnouncementDetayTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -44,10 +44,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivHaberDetay" />
+                app:layout_constraintTop_toBottomOf="@+id/ivAdminAnnouncementDetay" />
 
             <TextView
-                android:id="@+id/tvHaberContent"
+                android:id="@+id/tvAdminAnnouncementContent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -57,10 +57,10 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvHaberDetayTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/tvAdminAnnouncementDetayTitle" />
 
             <TextView
-                android:id="@+id/tvHaberDetayUsername"
+                android:id="@+id/tvAdminAnnouncementDetayUsername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -68,17 +68,17 @@
                 android:text="username"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvHaberContent" />
+                app:layout_constraintTop_toBottomOf="@+id/tvAdminAnnouncementContent" />
 
             <TextView
-                android:id="@+id/tvHaberDetayDate"
+                android:id="@+id/tvAdminAnnouncementDetayDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
                 android:text="tarih"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvHaberContent" />
+                app:layout_constraintTop_toBottomOf="@+id/tvAdminAnnouncementContent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

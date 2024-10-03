@@ -67,6 +67,25 @@
     <string name="newNewsChooseImage">Fotoğraf Ekle</string>
     <string name="newNewsTitleTitleRequired">Başlık alanı boş bırakılamaz</string>
     <string name="newNewsContentRequired">Haber içeriği boş bırakılamaz</string>
-    <string name="newNewsSavedMessage">Gönderi başarıyla kaydedildi.</string>
+    <string name="newNewsSavedMessage">Haber başarıyla kaydedildi.</string>
+
+    <!--Haber Guncelle Admin-->
+    <string name="updateNewsMessage">Haber başarıyla güncellendi.</string>
+
+
+    <!--Duyurular-->
+
+    <!--Duyurular Admin-->
+    <string name="addNewAnnouncement">Yeni Duyuru Ekle</string>
+
+    <!--Yeni Duyuru Admin-->
+    <string name="newAnnouncementTitle">Başlık</string>
+    <string name="newAnnouncementContent">Duyuru İçeriği</string>
+    <string name="newAnnouncementTitleTitleRequired">Başlık alanı boş bırakılamaz</string>
+    <string name="newAnnouncementContentRequired">Duyuru içeriği boş bırakılamaz</string>
+    <string name="newAnnouncementSavedMessage">Duyuru başarıyla kaydedildi.</string>
+
+    <!--Duyuru Guncelle Admin-->
+    <string name="updateAnnouncementMessage">Duyuru başarıyla güncellendi.</string>
 
 </resources>

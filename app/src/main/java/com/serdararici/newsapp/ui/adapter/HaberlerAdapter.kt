@@ -3,12 +3,18 @@ package com.serdararici.newsapp.ui.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.serdararici.newsapp.R
 import com.serdararici.newsapp.data.entity.Etkinlik
 import com.serdararici.newsapp.databinding.CardNewsBinding
+import com.serdararici.newsapp.ui.fragment.HaberFragmentDirections
+import com.serdararici.newsapp.ui.viewmodel.HaberViewModel
 
-class HaberlerAdapter(var mContext: Context, var haberlerListesi:List<Etkinlik>) : RecyclerView.Adapter<HaberlerAdapter.CardNewsHolder>() {
+class HaberlerAdapter(var mContext: Context,
+                      var haberlerListesi:List<Etkinlik>,
+                      var viewModel: HaberViewModel)
+    : RecyclerView.Adapter<HaberlerAdapter.CardNewsHolder>() {
     inner class CardNewsHolder(binding : CardNewsBinding) : RecyclerView.ViewHolder(binding.root) {
         var binding:CardNewsBinding
         init {
@@ -33,5 +39,10 @@ class HaberlerAdapter(var mContext: Context, var haberlerListesi:List<Etkinlik>)
         holder.binding.tvUserNameCardNews.text = haber.kullaniciAdi
         holder.binding.tvDateCardNews.text = haber.gecerlilikTarihi
         holder.binding.ivCardNews.setImageResource(R.drawable.sport_news)
+
+        holder.binding.cvNewsMain.setOnClickListener{
+            val action = HaberFragmentDirections.actionHaberFragmentToHaberDetayFragment(haber)
+            Navigation.findNavController(it).navigate(action)
+        }
     }
 }

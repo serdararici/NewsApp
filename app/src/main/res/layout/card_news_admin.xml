@@ -8,6 +8,7 @@
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cvNewsAdmin"
         android:layout_width="match_parent"
         android:layout_height="150dp">
 
@@ -45,10 +46,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:gravity="start"
                 android:text="TextView"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:maxLines="1"
+                android:gravity="start"
+                android:ellipsize="end"
                 app:layout_constraintEnd_toStartOf="@+id/ivNewsSettingsAdmin"
                 app:layout_constraintStart_toEndOf="@+id/ivCardNewsAdmin"
                 app:layout_constraintTop_toTopOf="@+id/ivCardNewsAdmin" />
@@ -60,9 +63,9 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="16dp"
+                android:ellipsize="end"
                 android:gravity="start"
                 android:maxLines="3"
-                android:ellipsize="end"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ivCardNewsAdmin"

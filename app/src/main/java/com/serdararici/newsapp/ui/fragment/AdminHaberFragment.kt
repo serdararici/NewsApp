@@ -18,6 +18,9 @@ import com.serdararici.newsapp.ui.adapter.HaberlerAdapter
 import com.serdararici.newsapp.ui.viewmodel.AdminHaberViewModel
 import com.serdararici.newsapp.ui.viewmodel.AdminYeniHaberViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @AndroidEntryPoint
 class AdminHaberFragment : Fragment(), SearchView.OnQueryTextListener {
@@ -49,6 +52,9 @@ class AdminHaberFragment : Fragment(), SearchView.OnQueryTextListener {
 
         binding.rvNewsAdmin.layoutManager = LinearLayoutManager(requireContext())
 
+        var todayDate = getDate()
+        binding.tvDateAdminHaber.setText(todayDate)
+
         binding.btnAddNewNewsAdmin.setOnClickListener{
             navController.navigate(R.id.action_adminHaberFragment_to_adminYeniHaberFragment)
         }
@@ -68,6 +74,17 @@ class AdminHaberFragment : Fragment(), SearchView.OnQueryTextListener {
     override fun onQueryTextChange(newText: String): Boolean {
         viewmodelAdminHaber.searchNews(newText)
         return true
+    }
+
+    fun getDate(): String {
+        // Şu anki tarihi al
+        val currentDate = Date()
+
+        // Uygulamanın mevcut dil ayarına göre tarih formatını ayarla
+        val dateFormat = SimpleDateFormat("EEEE, MMMM d, yyyy", Locale.getDefault())
+
+        // Tarihi formatla ve döndür
+        return dateFormat.format(currentDate)
     }
 
 

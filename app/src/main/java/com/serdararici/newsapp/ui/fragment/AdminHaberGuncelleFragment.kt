@@ -59,14 +59,16 @@ class AdminHaberGuncelleFragment : Fragment() {
 
             if (checkAll()) {
                 binding.progressBarNewNewsAdmin.visibility = View.VISIBLE
-                updateNews(news.id,updateNewsTitle,updateNewsContent)
+                updateNews(news.id,updateNewsTitle,updateNewsContent,news.gecerlilikTarihi)
+                navController.navigate(R.id.action_adminHaberGuncelleFragment_to_adminHaberFragment)
+                Toast.makeText(requireContext(), getString(R.string.updateNewsMessage), Toast.LENGTH_LONG).show()
             }
         }
     }
 
 
-    fun updateNews(newsId: Int, updateNewsTitle:String, updateNewsContent:String) {
-        viewmodelAdminHaberGuncelle.updateNews(newsId,updateNewsTitle,updateNewsContent)
+    fun updateNews(newsId: Int, updateNewsTitle:String, updateNewsContent:String,updateNewsDate:String) {
+        viewmodelAdminHaberGuncelle.updateNews(newsId,updateNewsTitle,updateNewsContent,updateNewsDate)
     }
 
 

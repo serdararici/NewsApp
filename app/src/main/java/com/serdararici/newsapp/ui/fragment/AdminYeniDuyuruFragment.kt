@@ -1,7 +1,6 @@
 package com.serdararici.newsapp.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,36 +11,34 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.serdararici.newsapp.R
-import com.serdararici.newsapp.databinding.FragmentAdminYeniHaberBinding
-import com.serdararici.newsapp.ui.viewmodel.AdminYeniHaberViewModel
+import com.serdararici.newsapp.databinding.FragmentAdminYeniDuyuruBinding
+import com.serdararici.newsapp.ui.viewmodel.AdminYeniDuyuruViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.Date
-import java.util.Locale
 
 @AndroidEntryPoint
-class AdminYeniHaberFragment : Fragment() {
-    private var _binding: FragmentAdminYeniHaberBinding?=null
+class AdminYeniDuyuruFragment : Fragment() {
+    private var _binding : FragmentAdminYeniDuyuruBinding?=null
     private val binding get() = _binding!!
     private lateinit var navController: NavController
-    private lateinit var viewmodelAdminYeniHaber : AdminYeniHaberViewModel
+    private lateinit var viewmodelAdminYeniDuyuru : AdminYeniDuyuruViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val tempViewModel : AdminYeniHaberViewModel by viewModels()
-        viewmodelAdminYeniHaber = tempViewModel
+        val tempViewModel : AdminYeniDuyuruViewModel by viewModels()
+        viewmodelAdminYeniDuyuru = tempViewModel
 
         val bottomNavigationView =
             requireActivity()!!.findViewById<BottomNavigationView>(R.id.BottomNavAdmin)
         bottomNavigationView.visibility = View.GONE
-
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentAdminYeniHaberBinding.inflate(inflater, container, false)
+        _binding = FragmentAdminYeniDuyuruBinding.inflate(inflater,container,false)
         return binding.root
     }
 
@@ -49,39 +46,39 @@ class AdminYeniHaberFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
 
-
-        binding.btnNewNewsSaveAdmin.setOnClickListener {
-            var newNewsTitle = binding.etNewNewsTitleAdmin.text.toString()
-            var newNewsContent = binding.etNewNewsContentAdmin.text.toString()
-            var newNewsDate = getDate()
+        binding.btnNewAnnouncementSaveAdmin.setOnClickListener {
+            var newAnnouncementTitle = binding.etNewAnnouncementTitleAdmin.text.toString()
+            var newAnnouncementContent = binding.etNewAnnouncementContentAdmin.text.toString()
+            var newAnnouncementDate = getDate()
 
             if (checkAll()) {
-                binding.progressBarNewNewsAdmin.visibility = View.VISIBLE
-                addNewNews(newNewsTitle,newNewsContent,newNewsDate)
-                navController.navigate(R.id.action_adminYeniHaberFragment_to_adminHaberFragment)
-                Toast.makeText(requireContext(), getString(R.string.newNewsSavedMessage), Toast.LENGTH_LONG).show()
+                binding.progressBarNewAnnouncementAdmin.visibility = View.VISIBLE
+                addNewAnnouncement(newAnnouncementTitle,newAnnouncementContent,newAnnouncementDate)
+                navController.navigate(R.id.action_adminYeniDuyuruFragment_to_adminDuyuruFragment)
+                Toast.makeText(requireContext(), getString(R.string.newAnnouncementSavedMessage), Toast.LENGTH_LONG).show()
             }
         }
 
     }
 
-    fun addNewNews(newNewsTitle:String, newNewsContent:String,newNewsDate:String) {
-        viewmodelAdminYeniHaber.addNewNews(newNewsTitle,newNewsContent,newNewsDate)
+
+    fun addNewAnnouncement(newAnnouncementTitle:String, newAnnouncementContent:String,newAnnouncementDate:String) {
+        viewmodelAdminYeniDuyuru.addNewAnnouncement(newAnnouncementTitle,newAnnouncementContent,newAnnouncementDate)
     }
 
 
     private fun checkAll():Boolean {
-        val newsTitle = binding.etNewNewsTitleAdmin.text.toString()
-        val newsContent = binding.etNewNewsContentAdmin.text.toString()
+        val announcementTitle = binding.etNewAnnouncementTitleAdmin.text.toString()
+        val announcementContent = binding.etNewAnnouncementContentAdmin.text.toString()
         clearErrors()
-        if(newsTitle == ""){
-            binding.textInputNewNewsTitleAdmin.error = getString(R.string.newNewsTitleTitleRequired)
+        if(announcementTitle == ""){
+            binding.textInputNewAnnouncementTitleAdmin.error = getString(R.string.newAnnouncementTitleTitleRequired)
             Toast.makeText(requireContext(), R.string.newNewsTitleTitleRequired, Toast.LENGTH_LONG).show()
             return false
         }
-        if(newsContent == ""){
-            binding.textInputNewNewsContentAdmin.error = getString(R.string.newNewsContentRequired)
-            Toast.makeText(requireContext(), R.string.newNewsContentRequired, Toast.LENGTH_LONG).show()
+        if(announcementContent == ""){
+            binding.textInputNewAnnouncementContentAdmin.error = getString(R.string.newAnnouncementContentRequired)
+            Toast.makeText(requireContext(), R.string.newAnnouncementContentRequired, Toast.LENGTH_LONG).show()
             return false
         }
 
@@ -89,8 +86,8 @@ class AdminYeniHaberFragment : Fragment() {
     }
 
     private fun clearErrors() {
-        binding.textInputNewNewsTitleAdmin.error = null
-        binding.textInputNewNewsContentAdmin.error = null
+        binding.textInputNewAnnouncementTitleAdmin.error = null
+        binding.textInputNewAnnouncementContentAdmin.error = null
     }
 
     fun getDate(): String {

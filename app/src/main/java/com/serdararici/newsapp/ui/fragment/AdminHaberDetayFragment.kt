@@ -9,23 +9,24 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.serdararici.newsapp.R
-import com.serdararici.newsapp.databinding.FragmentHaberDetayBinding
+import com.serdararici.newsapp.databinding.FragmentAdminHaberDetayBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HaberDetayFragment : Fragment() {
-    private var _binding : FragmentHaberDetayBinding?=null
-    private val binding get() = _binding!!
+class AdminHaberDetayFragment : Fragment() {
+    var _binding: FragmentAdminHaberDetayBinding?=null
+    val binding get() = _binding!!
     private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentHaberDetayBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentAdminHaberDetayBinding.inflate(inflater,container,false)
         return binding.root
     }
 
@@ -33,13 +34,14 @@ class HaberDetayFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
 
-        val bundle: HaberDetayFragmentArgs by navArgs()
+        val bundle: AdminHaberDetayFragmentArgs by navArgs()
         val newsDetails = bundle.newsDetails
 
-        binding.tvHaberDetayTitle.setText(newsDetails.konu)
-        binding.tvHaberContent.setText(newsDetails.icerik)
-        binding.tvHaberDetayUsername.setText(newsDetails.kullaniciAdi)
-        binding.tvHaberDetayDate.setText(newsDetails.gecerlilikTarihi)
+        binding.tvAdminHaberDetayTitle.setText(newsDetails.konu)
+        binding.tvAdminHaberContent.setText(newsDetails.icerik)
+        binding.tvAdminHaberDetayUsername.setText(newsDetails.kullaniciAdi)
+        binding.tvAdminHaberDetayDate.setText(newsDetails.gecerlilikTarihi)
+
     }
 
 }

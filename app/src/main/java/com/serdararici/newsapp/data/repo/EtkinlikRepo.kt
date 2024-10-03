@@ -11,26 +11,45 @@ import kotlinx.coroutines.launch
 
 class EtkinlikRepo (var edao:EtkinlikDao){
     var haberlerListesiLive:MutableLiveData<List<Etkinlik>>
+    var duyurularListesiLive:MutableLiveData<List<Etkinlik>>
     init {
         haberlerListesiLive = MutableLiveData()
+        duyurularListesiLive = MutableLiveData()
     }
 
     fun getAllNewsLive() : MutableLiveData<List<Etkinlik>>{
         return haberlerListesiLive
     }
+    fun getAllAnnouncementLive() : MutableLiveData<List<Etkinlik>>{
+        return duyurularListesiLive
+    }
 
-    fun addNewNews(newNewsTitle:String, newNewsContent:String) {
+    fun addNewNews(newNewsTitle:String, newNewsContent:String, newNewsDate:String) {
         val job = CoroutineScope(Dispatchers.Main).launch {
-            val newHaber = Etkinlik(0,newNewsTitle,newNewsContent,"02.10.2024","","haber","serdararici","")
+            val newHaber = Etkinlik(0,newNewsTitle,newNewsContent,newNewsDate,"","haber","serdararici","")
             edao.addNews(newHaber)
         }
     }
-    fun updateNews(newsId: Int, updateNewsTitle:String, updateNewsContent:String) {
+    fun addNewAnnouncement(newAnnouncementTitle:String, newAnnouncementContent:String, newAnnouncementDate:String) {
         val job = CoroutineScope(Dispatchers.Main).launch {
-            val updateHaber = Etkinlik(newsId,updateNewsTitle,updateNewsContent,"02.10.2024","","haber","serdararici","")
+            val newAnnouncement = Etkinlik(0,newAnnouncementTitle,newAnnouncementContent,newAnnouncementDate,"","duyuru","serdararici","")
+            edao.addAnnouncement(newAnnouncement)
+        }
+    }
+
+    fun updateNews(newsId: Int, updateNewsTitle:String, updateNewsContent:String, updateNewsDate:String) {
+        val job = CoroutineScope(Dispatchers.Main).launch {
+            val updateHaber = Etkinlik(newsId,updateNewsTitle,updateNewsContent,updateNewsDate,"","haber","serdararici","")
             edao.updateNews(updateHaber)
         }
     }
+    fun updateAnnouncement(announcementId: Int, updateAnnouncementTitle:String, updateAnnouncementContent:String, updateAnnouncementDate:String) {
+        val job = CoroutineScope(Dispatchers.Main).launch {
+            val updateAnnouncement = Etkinlik(announcementId,updateAnnouncementTitle,updateAnnouncementContent,updateAnnouncementDate,"","duyuru","serdararici","")
+            edao.updateAnnouncement(updateAnnouncement)
+        }
+    }
+
     fun searchNews(searchingWord: String){
         val job = CoroutineScope(Dispatchers.Main).launch {
             haberlerListesiLive.value = edao.searchNews(searchingWord)
@@ -43,9 +62,22 @@ class EtkinlikRepo (var edao:EtkinlikDao){
             getAllNews()
         }
     }
+    fun deleteAnnouncement(id: Int) {
+        val job = CoroutineScope(Dispatchers.Main).launch {
+            val deleteAnnouncement = Etkinlik(id, "", "", "", "", "duyuru", "", "")
+            edao.deleteAnnouncement(deleteAnnouncement)
+            getAllAnnouncement()
+        }
+    }
+
     fun getAllNews() {
         val job = CoroutineScope(Dispatchers.Main).launch {
             haberlerListesiLive.value = edao.getAllNews()
+        }
+    }
+    fun getAllAnnouncement() {
+        val job = CoroutineScope(Dispatchers.Main).launch {
+            duyurularListesiLive.value = edao.getAllAnnouncement()
         }
     }
 }

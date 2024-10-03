@@ -43,6 +43,10 @@ class AdminHaberlerAdapter (var mContext: Context,
         holder.binding.tvDateCardNewsAdmin.text = haber.gecerlilikTarihi
         holder.binding.ivCardNewsAdmin.setImageResource(R.drawable.sport_news)
 
+        holder.binding.cvNewsAdmin.setOnClickListener{
+            val action = AdminHaberFragmentDirections.actionAdminHaberFragmentToAdminHaberDetayFragment(haber)
+            Navigation.findNavController(it).navigate(action)
+        }
         holder.binding.ivNewsSettingsAdmin.setOnClickListener{
             val popup = PopupMenu(mContext, holder.binding.ivNewsSettingsAdmin)
             popup.menuInflater.inflate(R.menu.news_popup_menu_admin, popup.menu)
