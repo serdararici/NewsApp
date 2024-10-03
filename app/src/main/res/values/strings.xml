@@ -88,4 +88,9 @@
     <!--Duyuru Guncelle Admin-->
     <string name="updateAnnouncementMessage">Duyuru başarıyla güncellendi.</string>
 
+    <!--Settings-->
+    <string name="settings">Ayarlar</string>
+    <string name="signOut">Çıkış yap</string>
+    <string name="signOutMessage">Çıkış Yapıldı.</string>
+
 </resources>

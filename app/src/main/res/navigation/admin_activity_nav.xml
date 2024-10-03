@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_adminHaberFragment_to_adminHaberDetayFragment"
             app:destination="@id/adminHaberDetayFragment" />
+        <action
+            android:id="@+id/action_adminHaberFragment_to_adminSettingsFragment"
+            app:destination="@id/adminSettingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminDuyuruFragment"
@@ -106,5 +109,14 @@
         <action
             android:id="@+id/action_adminYeniDuyuruFragment_to_adminDuyuruFragment"
             app:destination="@id/adminDuyuruFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminSettingsFragment"
+        android:name="com.serdararici.newsapp.ui.fragment.AdminSettingsFragment"
+        android:label="fragment_admin_settings"
+        tools:layout="@layout/fragment_admin_settings" >
+        <action
+            android:id="@+id/action_adminSettingsFragment_to_adminHaberFragment"
+            app:destination="@id/adminHaberFragment" />
     </fragment>
 </navigation>

@@ -1,5 +1,6 @@
 package com.serdararici.newsapp.ui.fragment
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -35,6 +36,7 @@ class SignInFragment : Fragment() {
 
         val tempViewModel : SignInViewModel by viewModels()
         viewmodelSignIn = tempViewModel
+
     }
 
     override fun onCreateView(
@@ -48,6 +50,27 @@ class SignInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
+
+        val sharedPref = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
+        val isLoggedIn = sharedPref.getBoolean("isLoggedIn", false)
+        val userRole = sharedPref.getString("userRole", null)
+
+        if (isLoggedIn) {
+            // Kullanıcı zaten giriş yapmış, ana ekrana yönlendir
+            if(userRole == "admin") {
+                val intent = Intent(requireContext(), AdminActivity::class.java)
+                startActivity(intent)
+                requireActivity().finish()
+            } else {
+                val intent = Intent(requireContext(), MainActivity::class.java)
+                startActivity(intent)
+                requireActivity().finish()
+            }
+        } else {
+        }
+
+
+
 
         binding.tvSginInToSignUp.setOnClickListener{
             navController.navigate(R.id.action_signInFragment_to_signUpFragment)
@@ -73,9 +96,19 @@ class SignInFragment : Fragment() {
                     viewmodelSignIn.userLive.observe(viewLifecycleOwner) { user ->
                         if (user != null) {
                             // Giriş başarılı
+
+                            val sharedPref = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
+                            val editor = sharedPref.edit()
+                            editor.putBoolean("isLoggedIn", true)  // Giriş yaptığını kaydet
+                            editor.putString("userEmail", user.userMail)   // Gerekirse kullanıcı bilgilerini de tutabilirsin
+                            editor.putString("userName", user.userName)
+                            editor.putString("userRole", user.role)
+                            editor.apply()
+
                             binding.progressBarSignIn.visibility = View.GONE
                             // Ana ekrana yönlendir  //Livedata ile user gönder
                             if (user.role == "admin") {
+
                                 val intent = Intent(requireContext(), AdminActivity::class.java)
                                 startActivity(intent)
                                 requireActivity().finish()

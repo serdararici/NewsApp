@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_haberFragment_to_duyuruFragment"
             app:destination="@id/duyuruFragment" />
+        <action
+            android:id="@+id/action_haberFragment_to_settingsFragment2"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/duyuruFragment"
@@ -52,5 +55,14 @@
         <argument
             android:name="announcementDetails"
             app:argType="com.serdararici.newsapp.data.entity.Etkinlik" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.serdararici.newsapp.ui.fragment.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment2_to_haberFragment"
+            app:destination="@id/haberFragment" />
     </fragment>
 </navigation>

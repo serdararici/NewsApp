@@ -10,4 +10,8 @@
         android:id="@+id/adminDuyuruFragment"
         android:icon="@drawable/baseline_notifications_24_white"
         android:title="@string/announcements" />
+    <item
+    android:id="@+id/adminSettingsFragment"
+    android:icon="@drawable/baseline_settings_24_white"
+    android:title="@string/settings" />
 </menu>
