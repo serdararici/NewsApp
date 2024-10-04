@@ -2,6 +2,10 @@
 
 Bu proje, kullanıcıların haberleri ve duyuruları listeleyebildiği bir mobil haber uygulamasıdır. Uygulama, farklı kullanıcı rolleri (kullanıcı ve admin) içermektedir ve her rolün farklı yetkileri bulunmaktadır.
 
+
+![NewsApp](https://github.com/serdararici/NewsApp/blob/master/Poster.JPG)
+
+
 ## Özellikler
 
 ### Kullanıcı Rolleri
