@@ -100,7 +100,8 @@ class SignInFragment : Fragment() {
                             val sharedPref = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
                             val editor = sharedPref.edit()
                             editor.putBoolean("isLoggedIn", true)  // Giriş yaptığını kaydet
-                            editor.putString("userEmail", user.userMail)   // Gerekirse kullanıcı bilgilerini de tutabilirsin
+                            editor.putInt("userId", user.userId)
+                            editor.putString("userMail", user.userMail)   // Gerekirse kullanıcı bilgilerini de tutabilirsin
                             editor.putString("userName", user.userName)
                             editor.putString("userRole", user.role)
                             editor.apply()

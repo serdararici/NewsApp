@@ -1,5 +1,6 @@
 package com.serdararici.newsapp.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import androidx.fragment.app.Fragment
@@ -10,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.serdararici.newsapp.MainActivity
 import com.serdararici.newsapp.R
 import com.serdararici.newsapp.databinding.FragmentSignUpBinding
 import com.serdararici.newsapp.ui.viewmodel.SignUpViewModel
@@ -51,13 +53,13 @@ class SignUpFragment : Fragment() {
                 viewmodelSignUp.addUser(username,userMail,password,"user")
                 Toast.makeText(requireContext(), R.string.registrationSuccess, Toast.LENGTH_LONG).show()
 
-                /*
+
+
                 val intent = Intent(requireActivity(), MainActivity::class.java)
                 startActivity(intent)
                 requireActivity().finish()
 
-                Toast.makeText(requireContext(),  getString(R.string.registrationFailed)+"$message", Toast.LENGTH_LONG ).show()
-                 */
+                //Toast.makeText(requireContext(),  getString(R.string.registrationFailed)+"$message", Toast.LENGTH_LONG ).show()
 
             }
         }

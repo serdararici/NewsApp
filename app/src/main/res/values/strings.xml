@@ -6,6 +6,7 @@
     <string name="announcements">Duyurular</string>
 
     <string name="set">Ayarla</string>
+    <string name="confirm">Onayla</string>
     <string name="cancel">İptal</string>
     <string name="close">Kapat</string>
     <string name="save">Kaydet</string>
@@ -92,5 +93,9 @@
     <string name="settings">Ayarlar</string>
     <string name="signOut">Çıkış yap</string>
     <string name="signOutMessage">Çıkış Yapıldı.</string>
+    <string name="deleteAccount">Hesabı Sil</string>
+    <string name="deleteAccountMessage">Hesabınız silindi!</string>
+    <string name="accountWillDelete">Dikkat: Hesabınız Silinecek!</string>
+    <string name="deleteAccountWarning">Hesabınızı silmek istediğinizden emin misiniz?</string>
 
 </resources>
